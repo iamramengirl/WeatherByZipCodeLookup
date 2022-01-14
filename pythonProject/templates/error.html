@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% block title %}Error Page{% endblock %}
+{% block body %}
+  
+  <h1>Error: Invalid Postal Code input.</h1>
+  <a href="{{ url_for('index') }}"><p>Click Here</a>To go to the Home Page</p>
+  
+{% endblock %}

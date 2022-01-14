@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>weather</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <style>
+    table, th, td {
+      border-style: none;
+      padding: 10px;
+      text-align: center;
+    }
+    th, td {
+      width: 300px;
+    }
+  </style>
+
+   <script type="text/javascript">
+    function loadImages() {
+        document.getElementById("imgForecast0").src = `http://openweathermap.org/img/w/{{data.forecast0icon}}.png`
+        document.getElementById("imgForecast1").src = `http://openweathermap.org/img/w/{{data.forecast1icon}}.png`
+        document.getElementById("imgForecast2").src = `http://openweathermap.org/img/w/{{data.forecast2icon}}.png`
+        document.getElementById("mapImg").src = `https://maps.googleapis.com/maps/api/staticmap?zoom=11&size=400x400&maptype=roadmap&sensor=false&markers=color:red%7Clabel:%7C{{data.lat}},{{data.lon}}&key=AIzaSyCyRCt0M81ONLVVMWrbaZ0XOEohnaF7Fdk`
+    }
+  </script>
+
+</head>
+
+<body onload="loadImages()">
+  <br/>
+  <br/>
+  <center class="row">
+    <form method="post" class="col-md-6 col-md-offset-3">
+      <div class="input-group">
+        <label style="float:left; position:relative; top:8px; ">Post Code</label>
+        <input type="text" class="form-control" name="zipcode" placeholder="130-0011" style="width: 87%; left: 10px;"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </div>
+      <form>
+  </center>
+
+  <div class="row">
+    {% if data.city_name %}
+    <div class="col-md-6 col-md-offset-3">
+      <h3>Location: {{data.city_name}}, {{data.country_name}}</h3>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <h4>3-day Forecast</h4>
+      <table>
+        <tr>
+          <td><img src="" id="imgForecast0" width="100" height="100"/></td>
+          <td><img src="" id="imgForecast1" width="100" height="100"/></td>
+          <td><img src="" id="imgForecast2" width="100" height="100"/></td>
+        </tr>
+        <tr>
+          <td>{{data.forecast0dt}}</td>
+          <td>{{data.forecast1dt}}</td>
+          <td>{{data.forecast2dt}}</td>
+        </tr>
+        <tr>
+          <td><h3>{{data.forecast0}}</h3></td>
+          <td><h3>{{data.forecast1}}</h3></td>
+          <td><h3>{{data.forecast2}}</h3></td>
+        </tr>
+        <tr>
+          <td>{{data.forecast0temp}}</td>
+          <td>{{data.forecast1temp}}</td>
+          <td>{{data.forecast2temp}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <img src="" id="mapImg"/>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>
