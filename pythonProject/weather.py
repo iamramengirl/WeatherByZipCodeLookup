@@ -20,7 +20,7 @@ def weather():
 
 	zipcode = zipcode + ',jp'
 
-	api = 'ecbe56994eea06c2715ab24224923c4d'
+	api = '{API Key Here}'
 
 	url = 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zipcode + '&APPID=' + api
 	print("url:", url)
